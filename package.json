@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "Battleship",
   "version": "1.0.0",
-  "description": "Battleship",
+  "description": "Battleship project from the Odin Project learning trail",
   "main": "index.js",
   "scripts": {
     "test": "jest",
