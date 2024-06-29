@@ -1,22 +1,18 @@
 class Ship {
-	constructor(length, hit, sunk) {
+	constructor(length) {
 		this.length = length;
-		this.hit = hit;
-		this.sunk = sunk;
+		this.hits = 0;
 	}
 
-	// Increase the amount of times the ship has been hit, and decrease the length of the ship
+	// Increase the hits on the ship.
 	hit() {
-		let shipHit = 0;
-		shipHit++;
-		this.length = this.length - 1;
+		this.hits += 1;
 	}
 
-	// Determinate if the ship is sunk based on the hits it took and it's remaining length.
-	sunk() {
-		shipIsSunk = false;
-		if (this.length === 0) {
-			shipIsSunk = true;
-		}
+	// Check if the hit ship has any life left ( took more hits then the length of the ship )
+	isSunk() {
+		return this.hits >= this.length;
 	}
 }
+
+module.exports = Ship;
