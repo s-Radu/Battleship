@@ -13,6 +13,12 @@ class Ship {
 	isSunk() {
 		return this.hits >= this.length;
 	}
+
+	// Reset method to reinitialize the ship's state
+	reset() {
+		this.hits = 0;
+		this.sunk = false;
+	}
 }
 
 module.exports = Ship;
