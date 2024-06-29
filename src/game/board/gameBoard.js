@@ -10,6 +10,8 @@ class GameBoard {
 		);
 	}
 
+	// Add method to check for collision when placing ship on the game board
+
 	placeShip(ship, { x, y }, orientation) {
 		for (let i = 0; i < ship.length; i++) {
 			if (orientation === 'horizontal') {
