@@ -1,5 +1,9 @@
-const Ship = require('../ship.js');
+const Ship = require('../ship');
 
-const cruise = new Ship(3);
+class Cruiser extends Ship {
+	constructor() {
+		super(4, 'Cruiser');
+	}
+}
 
-module.exports = cruise;
+module.exports = Cruiser;

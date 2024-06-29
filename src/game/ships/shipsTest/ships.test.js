@@ -1,18 +1,29 @@
-// Import the specific ship modules
-const battleShip = require('../ships/battleship');
-const carrier = require('../ships/carrier');
-const cruise = require('../ships/cruiser');
-const destroyer = require('../ships/destroyer');
-const submarine = require('../ships/submarine');
+// Import the specific ship classes
+const BattleShip = require('../ships/battleship');
+const Carrier = require('../ships/carrier');
+const Cruiser = require('../ships/cruiser');
+const Destroyer = require('../ships/destroyer');
+const Submarine = require('../ships/submarine');
 
 describe('Ships functionality', () => {
+	let battleShip, carrier, cruiser, destroyer, submarine;
+
 	beforeEach(() => {
-		// Reset each ship before every test
-		battleShip.reset();
-		carrier.reset();
-		cruise.reset();
-		destroyer.reset();
-		submarine.reset();
+		// Instantiate ship objects once before all tests
+		if (!battleShip) {
+			battleShip = new BattleShip();
+			carrier = new Carrier();
+			cruiser = new Cruiser();
+			destroyer = new Destroyer();
+			submarine = new Submarine();
+		} else {
+			// Reset ship state before each test
+			battleShip.reset();
+			carrier.reset();
+			cruiser.reset();
+			destroyer.reset();
+			submarine.reset();
+		}
 	});
 
 	describe('Battleship', () => {
@@ -22,8 +33,7 @@ describe('Ships functionality', () => {
 		});
 
 		test('Battleship sinks after enough hits', () => {
-			for (let i = 0; i < 4; i++) {
-				// Hit the ship 4 times
+			for (let i = 0; i < battleShip.length; i++) {
 				battleShip.hit();
 			}
 			expect(battleShip.isSunk()).toBe(true);
@@ -36,6 +46,26 @@ describe('Ships functionality', () => {
 		});
 	});
 
+	describe('Cruiser', () => {
+		test('hits are recorded', () => {
+			cruiser.hit();
+			expect(cruiser.hits).toBe(1);
+		});
+
+		test('Cruiser sinks after enough hits', () => {
+			for (let i = 0; i < cruiser.length; i++) {
+				cruiser.hit();
+			}
+			expect(cruiser.isSunk()).toBe(true);
+		});
+
+		test('Cruiser is not sunk with fewer hits than its length', () => {
+			cruiser.hit();
+			cruiser.hit();
+			expect(cruiser.isSunk()).toBe(false);
+		});
+	});
+
 	describe('Carrier', () => {
 		test('hits are recorded', () => {
 			carrier.hit();
@@ -43,8 +73,7 @@ describe('Ships functionality', () => {
 		});
 
 		test('Carrier sinks after enough hits', () => {
-			for (let i = 0; i < 5; i++) {
-				// Hit the ship 5 times
+			for (let i = 0; i < carrier.length; i++) {
 				carrier.hit();
 			}
 			expect(carrier.isSunk()).toBe(true);
@@ -57,27 +86,6 @@ describe('Ships functionality', () => {
 		});
 	});
 
-	describe('Cruise', () => {
-		test('hits are recorded', () => {
-			cruise.hit();
-			expect(cruise.hits).toBe(1);
-		});
-
-		test('Cruise sinks after enough hits', () => {
-			for (let i = 0; i < 5; i++) {
-				// Hit the ship 5 times
-				cruise.hit();
-			}
-			expect(cruise.isSunk()).toBe(true);
-		});
-
-		test('Cruise is not sunk with fewer hits than its length', () => {
-			cruise.hit();
-			cruise.hit();
-			expect(cruise.isSunk()).toBe(false);
-		});
-	});
-
 	describe('Destroyer', () => {
 		test('hits are recorded', () => {
 			destroyer.hit();
@@ -85,8 +93,7 @@ describe('Ships functionality', () => {
 		});
 
 		test('Destroyer sinks after enough hits', () => {
-			for (let i = 0; i < 2; i++) {
-				// Hit the ship 2 times
+			for (let i = 0; i < destroyer.length; i++) {
 				destroyer.hit();
 			}
 			expect(destroyer.isSunk()).toBe(true);
@@ -105,8 +112,7 @@ describe('Ships functionality', () => {
 		});
 
 		test('Submarine sinks after enough hits', () => {
-			for (let i = 0; i < 3; i++) {
-				// Hit the ship 3 times
+			for (let i = 0; i < submarine.length; i++) {
 				submarine.hit();
 			}
 			expect(submarine.isSunk()).toBe(true);

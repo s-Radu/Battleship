@@ -1,5 +1,10 @@
-const Ship = require('../ship.js');
+const Ship = require('../ship');
 
-const battleShip = new Ship(4);
+// Dynamically create a subclass of Ship for Battleship
+class Battleship extends Ship {
+	constructor() {
+		super(4, 'Battleship');
+	}
+}
 
-module.exports = battleShip;
+module.exports = Battleship;

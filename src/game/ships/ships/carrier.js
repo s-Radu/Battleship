@@ -1,5 +1,9 @@
-const Ship = require('../ship.js');
+const Ship = require('../ship');
 
-const carrier = new Ship(5);
+class Carrier extends Ship {
+	constructor() {
+		super(4, 'Carrier');
+	}
+}
 
-module.exports = carrier;
+module.exports = Carrier;

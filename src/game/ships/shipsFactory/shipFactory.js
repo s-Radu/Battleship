@@ -1,20 +1,18 @@
-// Import the ship instances
-const battleship = require('../ships/battleship');
-const carrier = require('../ships/carrier');
-const cruiser = require('../ships/cruiser');
-const destroyer = require('../ships/destroyer');
-const submarine = require('../ships/submarine');
+// Import the ship classes
+const Battleship = require('../ships/battleship');
+const Carrier = require('../ships/carrier');
+const Cruiser = require('../ships/cruiser');
+const Destroyer = require('../ships/destroyer');
+const Submarine = require('../ships/submarine');
 
 function createFleet() {
 	return {
-		battleship,
-		carrier,
-		cruiser,
-		destroyer,
-		submarine,
+		battleship: new Battleship(),
+		carrier: new Carrier(),
+		cruiser: new Cruiser(),
+		destroyer: new Destroyer(),
+		submarine: new Submarine(),
 	};
 }
 
 module.exports = { createFleet };
-
-console.log(createFleet());

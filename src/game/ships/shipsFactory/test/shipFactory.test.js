@@ -5,10 +5,10 @@ describe('Testing the creation of our ships', () => {
 		const fleet = createFleet();
 		expect(fleet).toEqual({
 			battleship: expect.objectContaining({ length: 4, hits: 0 }),
-			carrier: expect.objectContaining({ length: 5, hits: 0 }),
-			cruiser: expect.objectContaining({ length: 3, hits: 0 }),
-			destroyer: expect.objectContaining({ length: 2, hits: 0 }),
-			submarine: expect.objectContaining({ length: 3, hits: 0 }),
+			carrier: expect.objectContaining({ length: 4, hits: 0 }),
+			cruiser: expect.objectContaining({ length: 4, hits: 0 }),
+			destroyer: expect.objectContaining({ length: 4, hits: 0 }),
+			submarine: expect.objectContaining({ length: 4, hits: 0 }),
 		});
 	});
 });
