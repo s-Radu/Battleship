@@ -1,7 +1,7 @@
 // Import the specific ship modules
 const battleShip = require('../ships/battleship');
 const carrier = require('../ships/carrier');
-const cruise = require('../ships/cruise');
+const cruise = require('../ships/cruiser');
 const destroyer = require('../ships/destroyer');
 const submarine = require('../ships/submarine');
 
