@@ -10,19 +10,44 @@ class GameBoard {
 		);
 	}
 
-	// Add method to check for collision when placing ship on the game board
-
 	placeShip(ship, { x, y }, orientation) {
+		// Check if the ship placement is within board boundaries
+		if (
+			(orientation === 'horizontal' && x + ship.length > this.boardSize) ||
+			(orientation === 'vertical' && y + ship.length > this.boardSize)
+		) {
+			console.log('Ship placement exceeds board boundaries.');
+			return false; // Prevent placement if it exceeds boundaries
+		}
+
+		// Check for collision
+		for (let i = 0; i < ship.length; i++) {
+			if (orientation === 'horizontal') {
+				if (this.board[y][x + i] && this.board[y][x + i].ship) {
+					console.log('Collision detected. Cannot place ship here.');
+					return false; // Prevent placement on collision
+				}
+			} else {
+				// Vertical
+				if (this.board[y + i][x] && this.board[y + i][x].ship) {
+					console.log('Collision detected. Cannot place ship here.');
+					return false; // Prevent placement on collision
+				}
+			}
+		}
+
+		// Place the ship if no collision and within boundaries
 		for (let i = 0; i < ship.length; i++) {
 			if (orientation === 'horizontal') {
 				this.board[y][x + i] = { ship, part: i };
 			} else {
+				// Vertical
 				this.board[y + i][x] = { ship, part: i };
 			}
 		}
 		this.ships.push(ship);
+		return true; // Successfully placed the ship
 	}
-
 	receiveAttack({ x, y }) {
 		const target = this.board[y][x];
 		if (target) {
