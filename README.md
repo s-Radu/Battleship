@@ -1,7 +1,9 @@
 # [name]
 
 > [!NOTE]
-> add some notes
+> https://www.theodinproject.com/lessons/node-path-javascript-battleship
+>
+> Continue from there
 
 ---
 
